@@ -3,6 +3,7 @@ package org.openmrs.module.htmlformentry;
 import static org.hamcrest.CoreMatchers.is;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +26,7 @@ public class ComplexObsTagTest extends BaseHtmlFormEntryTest {
 	public void setup() throws Exception {
 		executeDataSet("org/openmrs/api/include/ObsServiceTest-complex.xml");
 		
-		file = File.createTempFile("test-image", ".png");
+		file = Files.createTempFile("test-image", ".png").toFile();
 		FileUtils.copyURLToFile(
 		    getClass().getClassLoader().getResource("org/openmrs/module/htmlformentry/include/test-image.png"), file);
 	}

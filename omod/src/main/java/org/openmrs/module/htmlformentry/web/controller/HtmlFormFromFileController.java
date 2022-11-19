@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.StringWriter;
+import java.nio.file.Files;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
@@ -58,7 +59,7 @@ public class HtmlFormFromFileController {
 				MultipartFile multipartFile = multipartRequest.getFile("htmlFormFile");
 				if (multipartFile != null) {
 					// use an unpredictable file name
-					f = File.createTempFile(TEMP_HTML_FORM_FILE_PREFIX, ".tmp");
+					f = Files.createTempFile(TEMP_HTML_FORM_FILE_PREFIX, ".tmp").toFile();
 					f.deleteOnExit();
 					
 					filePath = f.getAbsolutePath();

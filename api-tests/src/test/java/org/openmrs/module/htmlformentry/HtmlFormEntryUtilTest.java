@@ -46,6 +46,7 @@ import org.w3c.dom.NodeList;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1084,7 +1085,7 @@ public class HtmlFormEntryUtilTest extends BaseHtmlFormEntryTest {
 	@Verifies(value = "stringToDocument should not access filesystem resources", method = "stringToDocument(String xml)")
 	public void stringToDocument_shouldNotAccessFilesystemResources() throws java.io.IOException {
 		
-		File tempFile = File.createTempFile("htmlformentry-shouldNotAcccessFilesystemResources", ".tmp");
+		File tempFile = Files.createTempFile("htmlformentry-shouldNotAcccessFilesystemResources", ".tmp").toFile();
 		
 		String evil_xml = "<!DOCTYPE foo [\n" + "  <!ELEMENT foo ANY>\n" + "  <!ENTITY bar SYSTEM\n" + "  \"file:"
 		        + tempFile.getAbsolutePath() + "\">\n" + "]>\n" + "<htmlform>\n" + "    <foo>\n" + "        &bar;\n"
